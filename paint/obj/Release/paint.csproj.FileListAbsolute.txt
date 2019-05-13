@@ -1,0 +1,8 @@
+K:\programowanie_C#_SQL\paint_pictureBox\paint\bin\Release\paint.exe.config
+K:\programowanie_C#_SQL\paint_pictureBox\paint\bin\Release\paint.exe
+K:\programowanie_C#_SQL\paint_pictureBox\paint\bin\Release\paint.pdb
+K:\programowanie_C#_SQL\paint_pictureBox\paint\obj\Release\paint.Form1.resources
+K:\programowanie_C#_SQL\paint_pictureBox\paint\obj\Release\paint.Properties.Resources.resources
+K:\programowanie_C#_SQL\paint_pictureBox\paint\obj\Release\paint.csproj.GenerateResource.Cache
+K:\programowanie_C#_SQL\paint_pictureBox\paint\obj\Release\paint.exe
+K:\programowanie_C#_SQL\paint_pictureBox\paint\obj\Release\paint.pdb

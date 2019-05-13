@@ -1,0 +1,26 @@
+C:\Users\leon\Documents\Visual Studio 2012\Projects\paint_pictureBox\paint\bin\Debug\paint.exe.config
+C:\Users\leon\Documents\Visual Studio 2012\Projects\paint_pictureBox\paint\bin\Debug\paint.exe
+C:\Users\leon\Documents\Visual Studio 2012\Projects\paint_pictureBox\paint\bin\Debug\paint.pdb
+C:\Users\leon\Documents\Visual Studio 2012\Projects\paint_pictureBox\paint\obj\Debug\paint.Form1.resources
+C:\Users\leon\Documents\Visual Studio 2012\Projects\paint_pictureBox\paint\obj\Debug\paint.Properties.Resources.resources
+C:\Users\leon\Documents\Visual Studio 2012\Projects\paint_pictureBox\paint\obj\Debug\paint.csproj.GenerateResource.Cache
+C:\Users\leon\Documents\Visual Studio 2012\Projects\paint_pictureBox\paint\obj\Debug\paint.exe
+C:\Users\leon\Documents\Visual Studio 2012\Projects\paint_pictureBox\paint\obj\Debug\paint.pdb
+C:\Users\leon\Documents\Visual Studio 2012\Projects\paint_pictureBox\paint\obj\Debug\paint.csprojResolveAssemblyReference.cache
+K:\programowanie_C#_SQL\paint_pictureBox\paint\bin\Debug\paint.exe.config
+K:\programowanie_C#_SQL\paint_pictureBox\paint\obj\Debug\paint.exe
+K:\programowanie_C#_SQL\paint_pictureBox\paint\obj\Debug\paint.pdb
+K:\programowanie_C#_SQL\paint_pictureBox\paint\obj\Debug\paint.Form1.resources
+K:\programowanie_C#_SQL\paint_pictureBox\paint\obj\Debug\paint.Properties.Resources.resources
+K:\programowanie_C#_SQL\paint_pictureBox\paint\obj\Debug\paint.csproj.GenerateResource.Cache
+K:\programowanie_C#_SQL\paint_pictureBox\paint\bin\Debug\paint.exe
+K:\programowanie_C#_SQL\paint_pictureBox\paint\bin\Debug\paint.pdb
+N:\programowanie_C#_SQL\paint_pictureBox\paint\bin\Debug\paint.exe.config
+N:\programowanie_C#_SQL\paint_pictureBox\paint\bin\Debug\paint.exe
+N:\programowanie_C#_SQL\paint_pictureBox\paint\bin\Debug\paint.pdb
+N:\programowanie_C#_SQL\paint_pictureBox\paint\obj\Debug\paint.csprojResolveAssemblyReference.cache
+N:\programowanie_C#_SQL\paint_pictureBox\paint\obj\Debug\paint.Form1.resources
+N:\programowanie_C#_SQL\paint_pictureBox\paint\obj\Debug\paint.Properties.Resources.resources
+N:\programowanie_C#_SQL\paint_pictureBox\paint\obj\Debug\paint.csproj.GenerateResource.Cache
+N:\programowanie_C#_SQL\paint_pictureBox\paint\obj\Debug\paint.exe
+N:\programowanie_C#_SQL\paint_pictureBox\paint\obj\Debug\paint.pdb
