@@ -16,10 +16,12 @@ namespace paint
 {
     public partial class Form1 : Form
     {
+        private IActionRegister iationRegister;
         private SolidBrush myBrush;
         private Graphics myGraphics;
         private Pen myPen;
         private Point startXY = new Point(0, 0);
+
         private bool elipseUse = false;
         private bool penUse = false;
         private bool brushUse = false;
@@ -32,10 +34,17 @@ namespace paint
         private Point pStart, pEnd;
         private List<Action<Graphics>> lista = new List<Action<Graphics>>();
         public int counter = 0;
-        public Form1()
+        public Form1() 
         {
             InitializeComponent();
+            InitializeObject(new ActionRegister());
         }
+
+        public void InitializeObject(IActionRegister iationRegister) 
+        {
+            this.iationRegister = iationRegister;
+        }
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -120,6 +129,7 @@ namespace paint
             myGraphics.Dispose();
             myGraphics = canvasPicture.CreateGraphics();
         }
+
         
 
         private void canvasPicture_MouseUp(object sender, MouseEventArgs e)
@@ -130,32 +140,32 @@ namespace paint
             {
                 myPen = new Pen(colorPanel.BackColor, (int)nudTRackBar.Value);
                 myGraphics.DrawLine(myPen, pStart, pEnd);
-                lista.Add(x => x.DrawLine(myPen, pStart, pEnd));
+                iationRegister.SetElementToListOfActions(x => x.DrawLine(myPen, pStart, pEnd));
             }
            
             if (rectangleUse)
             {
                 myPen = new Pen(colorPanel.BackColor, (int)nudTRackBar.Value);
                 myGraphics.DrawRectangle(myPen, pStart.X, pStart.Y, (pEnd.X - pStart.X), (pEnd.Y - pStart.Y));
-                lista.Add(x => x.DrawRectangle(new Pen(Color.White), pStart.X, pStart.Y, (pEnd.X - pStart.X), (pEnd.Y - pStart.Y)));
+                iationRegister.SetElementToListOfActions(x => x.DrawRectangle(new Pen(Color.White), pStart.X, pStart.Y, (pEnd.X - pStart.X), (pEnd.Y - pStart.Y)));
             }
             if (elipseUse)
             {
                 myPen = new Pen(colorPanel.BackColor, (int)nudTRackBar.Value);
                 myGraphics.DrawEllipse(myPen, pStart.X, pStart.Y, (pEnd.X - pStart.X), (pEnd.Y - pStart.Y));
-                lista.Add(x => x.DrawEllipse(new Pen(Color.White), pStart.X, pStart.Y, (pEnd.X - pStart.X), (pEnd.Y - pStart.Y)));
+                iationRegister.SetElementToListOfActions(x => x.DrawEllipse(new Pen(Color.White), pStart.X, pStart.Y, (pEnd.X - pStart.X), (pEnd.Y - pStart.Y)));
             }
             if (filElipseUse)
             {
                 myBrush = new SolidBrush(colorPanel.BackColor);
                 myGraphics.FillEllipse(myBrush, pStart.X, pStart.Y, (pEnd.X - pStart.X), (pEnd.Y - pStart.Y));
-                lista.Add(x => x.FillEllipse(new SolidBrush(Color.White), pStart.X, pStart.Y, (pEnd.X - pStart.X), (pEnd.Y - pStart.Y)));
+                iationRegister.SetElementToListOfActions(x => x.FillEllipse(new SolidBrush(Color.White), pStart.X, pStart.Y, (pEnd.X - pStart.X), (pEnd.Y - pStart.Y)));
             }
             if (filRectangle)
             {
                 myBrush = new SolidBrush(colorPanel.BackColor);
                 myGraphics.FillRectangle(myBrush, pStart.X, pStart.Y, (pEnd.X - pStart.X), (pEnd.Y - pStart.Y));
-                lista.Add(x => x.FillRectangle(new SolidBrush(Color.White), pStart.X, pStart.Y, (pEnd.X - pStart.X), (pEnd.Y - pStart.Y)));
+                iationRegister.SetElementToListOfActions(x => x.FillRectangle(new SolidBrush(Color.White), pStart.X, pStart.Y, (pEnd.X - pStart.X), (pEnd.Y - pStart.Y)));
             }
          
             obrazek2 = getBmp();
@@ -184,13 +194,13 @@ namespace paint
                 if (brushUse)
                 {
                     myGraphics.FillEllipse(myBrush, e.X, e.Y, (int)nudTRackBar.Value, (int)nudTRackBar.Value);
-                    lista.Add(x => x.FillEllipse(new SolidBrush(Color.White), e.X, e.Y, (int)nudTRackBar.Value, (int)nudTRackBar.Value)); 
+                    iationRegister.SetElementToListOfActions(x => x.FillEllipse(new SolidBrush(Color.White), e.X, e.Y, (int)nudTRackBar.Value, (int)nudTRackBar.Value)); 
                 }
                 if (eraseUse)
                 {
                     myBrush = new SolidBrush(Color.White);
                     myGraphics.FillEllipse(myBrush, e.X, e.Y, (int)nudTRackBar.Value, (int)nudTRackBar.Value);
-                    lista.Add(x => x.FillEllipse(new SolidBrush(Color.Black), e.X, e.Y, (int)nudTRackBar.Value, (int)nudTRackBar.Value));
+                    iationRegister.SetElementToListOfActions(x => x.FillEllipse(new SolidBrush(Color.Black), e.X, e.Y, (int)nudTRackBar.Value, (int)nudTRackBar.Value));
                 }
                 
             }
@@ -206,7 +216,7 @@ namespace paint
         //cofnij
         private void button9_Click(object sender, EventArgs e)
         {
-            int ost = 0;         
+           // int ost = 0;         
             myGraphics = canvasPicture.CreateGraphics();
             if (lista.Any())
             {
@@ -265,6 +275,7 @@ namespace paint
            
             myGraphics = canvasPicture.CreateGraphics();
         }
+        
 
         private void tsbBrush_Click(object sender, EventArgs e)
         {
