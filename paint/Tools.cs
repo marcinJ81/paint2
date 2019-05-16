@@ -6,26 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace paint
-{
-    public interface IBrushTool
-    {
-
-    }
-    public class BrushTool 
-    {
-        private Color color { get; set; }
-        private Point point { get; set; }
-        public int pointX { get; set; }
-        public int pointY { get; set; }
-
-        public BrushTool(Color color, int size, Graphics toolType,)
-        {
-            myPen = new Pen(color, size);
-            tool = toolType;
-        } 
-       
-    }
-
+{  
     public interface IPenTool
     {
         Pen ChangeSize(IPenTool ipenTool, int size, Color color);
@@ -39,10 +20,14 @@ namespace paint
         private Point point { get; set; }
         public int pointX { get; set;}
         public int pointY { get; set; }
+        public string name { get; set; }
+        public bool active { get; set; }
 
-        public PenTool(int x, int y)
+        public PenTool(){ }
+        public PenTool(int x, int y,Color color)
+            :this()
         {
-            this.color = Color.Black;
+            this.color = color;
             this.point = new Point(x,y);
             this.pointX = point.X;
             this.pointY = point.Y;
@@ -62,10 +47,11 @@ namespace paint
             return this.point;
         }
 
-        public Pen ChangeSize(IPenTool ipenTool, int size,Color color)
+        public Pen ChangeSize(IPenTool ipenTool, int size,Color color )
         {
-            Pen myPen = new Pen(ipenTool.ChangeColor(color),(float) size)
+            Pen myPen = new Pen(ipenTool.ChangeColor(color), (float)size);
             return myPen;
         }
+
     }
 }
