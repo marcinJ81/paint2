@@ -18,7 +18,8 @@ namespace paint
     {
         private IActionRegister iationRegister;
         private IListOfTools ilistoftools;
-        private SolidBrush myBrush;
+        private IToolBrush ibrush;
+       // private SolidBrush myBrush;
         private Graphics myGraphics;
         private IPenTool myPen;
         private Point startXY = new Point(0, 0);
@@ -45,7 +46,8 @@ namespace paint
         {
             this.iationRegister = iationRegister;
             this.myPen = new PenTool(0, 0, colorPanel.BackColor);
-            ilistoftools = new ListOfTools();
+            this.ilistoftools = new ListOfTools();
+            this.ibrush = new ToolBrush();
         }
 
 
@@ -57,7 +59,7 @@ namespace paint
         void initializeTools()
         {
             float widthBrush = int.Parse(nudTRackBar.Text);
-            myBrush = new SolidBrush(colorPanel.BackColor);
+           // myBrush = new SolidBrush(colorPanel.BackColor);
             myGraphics =  canvasPicture.CreateGraphics();
            // myPen = new Pen(colorPanel.BackColor,widthBrush);
            
@@ -67,7 +69,7 @@ namespace paint
             if (colorDialog1.ShowDialog() == DialogResult.OK)
             {
                 colorPanel.BackColor = colorDialog1.Color;
-                myBrush.Color = colorPanel.BackColor;
+                ibrush.setSolidBrush(colorPanel.BackColor);
                // myPen.Color = colorPanel.BackColor;
             }
         }
@@ -140,7 +142,9 @@ namespace paint
 
         private void canvasPicture_MouseUp(object sender, MouseEventArgs e)
         {
+            //strategy patern is good
             pEnd = new Point(e.X, e.Y);
+            var brush = ibrush.setSolidBrush(colorPanel.BackColor);
 
             if (ilistoftools.chooseActiveTool("Line"))
             {
@@ -165,16 +169,13 @@ namespace paint
                 iationRegister.SetElementToListOfActions(x => x.DrawEllipse(new Pen(Color.White), pStart.X, pStart.Y, (pEnd.X - pStart.X), (pEnd.Y - pStart.Y)));
             }
             if (ilistoftools.chooseActiveTool("FillEllipse"))
-            {
-                myBrush = new SolidBrush(colorPanel.BackColor);
-                myGraphics.FillEllipse(myBrush, pStart.X, pStart.Y, (pEnd.X - pStart.X), (pEnd.Y - pStart.Y));
+            {              
+                myGraphics.FillEllipse(brush, pStart.X, pStart.Y, (pEnd.X - pStart.X), (pEnd.Y - pStart.Y));
                 iationRegister.SetElementToListOfActions(x => x.FillEllipse(new SolidBrush(Color.White), pStart.X, pStart.Y, (pEnd.X - pStart.X), (pEnd.Y - pStart.Y)));
             }
             if (ilistoftools.chooseActiveTool("FillRectangle"))
-            {
-                
-                myBrush = new SolidBrush(colorPanel.BackColor);
-                myGraphics.FillRectangle(myBrush, pStart.X, pStart.Y, (pEnd.X - pStart.X), (pEnd.Y - pStart.Y));
+            {              
+                myGraphics.FillRectangle(brush, pStart.X, pStart.Y, (pEnd.X - pStart.X), (pEnd.Y - pStart.Y));
                 iationRegister.SetElementToListOfActions(x => x.FillRectangle(new SolidBrush(Color.White), pStart.X, pStart.Y, (pEnd.X - pStart.X), (pEnd.Y - pStart.Y)));
             }
          
@@ -201,16 +202,18 @@ namespace paint
         {
             if (isDrawning == true)
             {
+                
                 if (ilistoftools.chooseActiveTool("Brush"))
                 {
-                    myGraphics.FillEllipse(myBrush, e.X, e.Y, (int)nudTRackBar.Value, (int)nudTRackBar.Value);
-                    iationRegister.SetElementToListOfActions(x => x.FillEllipse(new SolidBrush(Color.White), e.X, e.Y, (int)nudTRackBar.Value, (int)nudTRackBar.Value)); 
+                    var brush = ibrush.setSolidBrush(colorPanel.BackColor);
+                    myGraphics.FillEllipse(brush, e.X, e.Y, (int)nudTRackBar.Value, (int)nudTRackBar.Value);
+                    iationRegister.SetElementToListOfActions(x => x.FillEllipse(brush, e.X, e.Y, (int)nudTRackBar.Value, (int)nudTRackBar.Value)); 
                 }
                 if (ilistoftools.chooseActiveTool("Eraser"))
                 {
-                    myBrush = new SolidBrush(Color.White);
-                    myGraphics.FillEllipse(myBrush, e.X, e.Y, (int)nudTRackBar.Value, (int)nudTRackBar.Value);
-                    iationRegister.SetElementToListOfActions(x => x.FillEllipse(new SolidBrush(Color.Black), e.X, e.Y, (int)nudTRackBar.Value, (int)nudTRackBar.Value));
+                    //we must change
+                    myGraphics.FillEllipse(ibrush.setSolidBrush(Color.White), e.X, e.Y, (int)nudTRackBar.Value, (int)nudTRackBar.Value);
+                    iationRegister.SetElementToListOfActions(x => x.FillEllipse(ibrush.setSolidBrush(Color.White), e.X, e.Y, (int)nudTRackBar.Value, (int)nudTRackBar.Value));
                 }
                 
             }
