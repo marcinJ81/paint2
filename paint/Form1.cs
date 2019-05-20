@@ -19,7 +19,7 @@ namespace paint
         private IActionRegister iationRegister;
         private IListOfTools ilistoftools;
         private IToolBrush ibrush;
-       // private SolidBrush myBrush;
+      
         private Graphics myGraphics;
         private IPenTool myPen;
         private Point startXY = new Point(0, 0);
@@ -137,7 +137,7 @@ namespace paint
 
         public Pen setSizeAndColor(IPenTool ipentool, int size, Color color)
         {
-            return myPen.ChangeSize(myPen, (int)nudTRackBar.Value, colorPanel.BackColor);
+            return myPen.getPenTool((int)nudTRackBar.Value, colorPanel.BackColor);
         }
 
         private void canvasPicture_MouseUp(object sender, MouseEventArgs e)
