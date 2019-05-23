@@ -46,8 +46,8 @@
             this.tsbKwadrat = new System.Windows.Forms.ToolStripButton();
             this.tsbKwadratCz = new System.Windows.Forms.ToolStripButton();
             this.tsbGumka = new System.Windows.Forms.ToolStripButton();
-            this.canvasPicture = new System.Windows.Forms.PictureBox();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.canvasPicture = new System.Windows.Forms.PictureBox();
             this.gBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudTRackBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
@@ -207,6 +207,7 @@
             this.tsbKolo.Name = "tsbKolo";
             this.tsbKolo.Size = new System.Drawing.Size(23, 22);
             this.tsbKolo.Text = "toolStripButton3";
+            this.tsbKolo.ToolTipText = "Empty Rectangle";
             this.tsbKolo.Click += new System.EventHandler(this.tsbKolo_Click);
             // 
             // tsbKoloCz
@@ -249,6 +250,16 @@
             this.tsbGumka.Text = "toolStripButton1";
             this.tsbGumka.Click += new System.EventHandler(this.tsbGumka_Click);
             // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton1.Text = "toolStripButton1";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
             // canvasPicture
             // 
             this.canvasPicture.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -265,16 +276,6 @@
             this.canvasPicture.MouseMove += new System.Windows.Forms.MouseEventHandler(this.canvasPicture_MouseMove);
             this.canvasPicture.MouseUp += new System.Windows.Forms.MouseEventHandler(this.canvasPicture_MouseUp);
             this.canvasPicture.Resize += new System.EventHandler(this.canvasPicture_Resize);
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton1.Text = "toolStripButton1";
-            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // Form1
             // 

@@ -29,7 +29,6 @@ D:\paint_pictureBox\paint\obj\Debug\paint.exe
 D:\paint_pictureBox\paint\obj\Debug\paint.pdb
 D:\paint_pictureBox\paint\bin\Debug\paint.exe
 D:\paint_pictureBox\paint\bin\Debug\paint.pdb
-D:\paint_pictureBox\paint\obj\Debug\paint.csprojResolveAssemblyReference.cache
 D:\paint_pictureBox\paint\obj\Debug\paint.Form1.resources
 D:\paint_pictureBox\paint\obj\Debug\paint.Properties.Resources.resources
 D:\paint_pictureBox\paint\obj\Debug\paint.csproj.GenerateResource.Cache

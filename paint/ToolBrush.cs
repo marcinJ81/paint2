@@ -10,6 +10,7 @@ namespace paint
     public interface IToolBrush
     {
         SolidBrush setSolidBrush(Color color);
+        
     }
     public class ToolBrush : IToolBrush
     {

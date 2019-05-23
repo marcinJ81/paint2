@@ -11,7 +11,7 @@ namespace paint.PaintTools
 
     public abstract class AGraphicCanvas 
     {
-        public Graphics graphic { get; private set; }
+        public  Graphics graphic { get; private set; }
 
         public AGraphicCanvas(PictureBox canvasControl)
         {
@@ -34,29 +34,5 @@ namespace paint.PaintTools
             this.size = size;
         }
     }
-
-    public abstract class APenToolType : ACoordinates
-    {
-        public APenToolType(PictureBox canvasControl,int size, int xEnd, int yEnd, int xStart, int yStart, ICoordinates icoordintes) 
-            : base(canvasControl,size, xEnd, yEnd, xStart, yStart, icoordintes)
-        {
-        }
-
-        public abstract bool getMainToolTypePen(IPenTool ipen, Color color, string name);
-    }
-
-    public abstract class ABrushToolType : ACoordinates
-    {
-        public ABrushToolType(PictureBox canvasControl,int size, int xEnd, int yEnd, int xStart, int yStart, ICoordinates icoordintes)
-            : base(canvasControl, size, xEnd, yEnd, xStart, yStart, icoordintes)
-        {
-        }
-
-        public abstract bool getMainToolTypeBrush(IToolBrush ibrush, Color color, string name);
-    }
-
-
-
-
 
 }

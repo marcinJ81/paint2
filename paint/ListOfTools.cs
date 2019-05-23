@@ -16,7 +16,7 @@ namespace paint
     }
     public class ListOfTools : IListOfTools
     {
-        private List<PenTool> listoftools { get; set; }
+        private Dictionary<string,bool> listoftools { get; set; }
         private readonly IPenTool ipentool;
         private readonly IToolManagment imanagment;
 
@@ -30,9 +30,9 @@ namespace paint
         {
             if (listoftools.Any())
             {
-                if (!listoftools.Where(x => x.name == name).Any())
+                if (!listoftools.Where(x => x.Key == name).Any())
                     return false;
-                var result = listoftools.Where(x => x.name == name).FirstOrDefault().active;
+                var result = listoftools.Where(x => x.Key == name).FirstOrDefault().Value;
                 return result;
             }
             return false;
@@ -47,22 +47,18 @@ namespace paint
         {
             if (listoftools.Any())
             {
-                setDeactiveTools();
-               if(listoftools.Where(x => x.name == name).Any())
-                    listoftools.Where(x => x.name == name).First().active = true;
+                listoftools = imanagment.FillListOfTool();
+                if (listoftools.Where(x => x.Key == name).Any())
+                {
+                    listoftools[name] = true;
+                }
             }
         }
 
         public void setDeactiveTools()
         {
-            if (listoftools.Any())
-            {
-                foreach (var i in listoftools)
-                {
-                    listoftools.Where(x => x.name == i.name).First().active = false;
-                }
-                
-            }
+           
+            
         }
     }
 }

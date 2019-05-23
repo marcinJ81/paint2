@@ -8,58 +8,53 @@ namespace paint
 {
     public interface IToolManagment
     {
-        List<PenTool> FillListOfTool();
+        Dictionary<string,bool> FillListOfTool();
     }
     public class ToolManagment : IToolManagment
     {
 
-        public List<PenTool> FillListOfTool()
+        public Dictionary<string, bool> FillListOfTool()
         {
-            List<PenTool> result = new List<PenTool> {
-                new PenTool
+            Dictionary<string, bool> result = new Dictionary<string, bool>()
+            {  
                 {
-                    name = "Pen",
-                    active = false
+                    "Pen",
+                    false
                 },
-                new PenTool
+               
                 {
-                    name = "Brush",
-                    active = false
+                    "Brush",
+                    false
                 },
-                new PenTool
+               
                 {
-                    name = "Line",
-                    active = false
+                   "Line",
+                    false
                 },
-                new PenTool
+                
                 {
-                    name = "Rectangle",
-                    active = false
+                    "Rectangle",
+                    false
                 },
-                new PenTool
+                
                 {
-                    name = "Ellipse",
-                    active = false
+                    "Ellipse",
+                    false
                 },
-                 new PenTool
+                 
                 {
-                    name = "Ellipse",
-                    active = false
+                    "FillEllipse",
+                    false
                 },
-                new PenTool
+                
                 {
-                    name = "FillEllipse",
-                    active = false
+                    "FillRectangle",
+                    false
                 },
-                new PenTool
+                 
                 {
-                    name = "FillRectangle",
-                    active = false
-                },
-                 new PenTool
-                {
-                    name = "Eraser",
-                    active = false
+                    "Eraser",
+                    false
                 }
             };
 
