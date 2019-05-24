@@ -202,21 +202,23 @@ namespace paint
         {
             if (isDrawning == true)
             {
+
+                var coordinatesStartBrush = icoordinates.setStartCoordinates(e.X, e.Y);
                 var coordinatesEnd = icoordinates.setEndCoordinates(e.X, e.Y);
                 var brush = ibrush.setSolidBrush(colorPanel.BackColor);
                 string activeButton = listOfClickedButton.OrderByDescending(x => x.Key).FirstOrDefault().Value;
 
                 if (activeButton == "Simple Brush")
                 {
-                    abrushTool = new SimpleBrush(canvasPicture, (int)nudTRackBar.Value, coordinatesEnd.X, coordinatesEnd.Y, coordinatesStart.X,
-                    coordinatesStart.Y, icoordinates);
+                    abrushTool = new SimpleBrush(canvasPicture, (int)nudTRackBar.Value, coordinatesEnd.X, coordinatesEnd.Y, coordinatesStartBrush.X,
+                    coordinatesStartBrush.Y, icoordinates);
                     abrushTool.getMainToolTypeBrush(new ToolBrush(), colorPanel.BackColor);
                 }
                 if (activeButton == "Eraser")
                 {
                     //we must change
-                    abrushTool = new Eraser(canvasPicture, (int)nudTRackBar.Value, coordinatesEnd.X, coordinatesEnd.Y, coordinatesStart.X,
-                    coordinatesStart.Y, icoordinates);
+                    abrushTool = new Eraser(canvasPicture, (int)nudTRackBar.Value, coordinatesEnd.X, coordinatesEnd.Y, coordinatesStartBrush.X,
+                    coordinatesStartBrush.Y, icoordinates);
                     abrushTool.getMainToolTypeBrush(new ToolBrush(), colorPanel.BackColor);
                   
                 }
