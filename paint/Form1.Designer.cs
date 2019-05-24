@@ -186,7 +186,7 @@
             this.tsbBrush.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbBrush.Name = "tsbBrush";
             this.tsbBrush.Size = new System.Drawing.Size(23, 22);
-            this.tsbBrush.Text = "toolStripButton1";
+            this.tsbBrush.Text = "Simple Brush";
             this.tsbBrush.Click += new System.EventHandler(this.tsbBrush_Click);
             // 
             // tsbLinia
@@ -196,7 +196,7 @@
             this.tsbLinia.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbLinia.Name = "tsbLinia";
             this.tsbLinia.Size = new System.Drawing.Size(23, 22);
-            this.tsbLinia.Text = "toolStripButton2";
+            this.tsbLinia.Text = "Line";
             this.tsbLinia.Click += new System.EventHandler(this.tsbLinia_Click);
             // 
             // tsbKolo
@@ -206,7 +206,7 @@
             this.tsbKolo.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbKolo.Name = "tsbKolo";
             this.tsbKolo.Size = new System.Drawing.Size(23, 22);
-            this.tsbKolo.Text = "toolStripButton3";
+            this.tsbKolo.Text = "Empty Ellipse";
             this.tsbKolo.ToolTipText = "Empty Rectangle";
             this.tsbKolo.Click += new System.EventHandler(this.tsbKolo_Click);
             // 
@@ -217,7 +217,7 @@
             this.tsbKoloCz.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbKoloCz.Name = "tsbKoloCz";
             this.tsbKoloCz.Size = new System.Drawing.Size(23, 22);
-            this.tsbKoloCz.Text = "toolStripButton4";
+            this.tsbKoloCz.Text = "Full Ellipse";
             this.tsbKoloCz.Click += new System.EventHandler(this.tsbKoloCz_Click);
             // 
             // tsbKwadrat
@@ -227,7 +227,7 @@
             this.tsbKwadrat.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbKwadrat.Name = "tsbKwadrat";
             this.tsbKwadrat.Size = new System.Drawing.Size(23, 22);
-            this.tsbKwadrat.Text = "toolStripButton5";
+            this.tsbKwadrat.Text = "Empty Rectangle";
             this.tsbKwadrat.Click += new System.EventHandler(this.tsbKwadrat_Click);
             // 
             // tsbKwadratCz
@@ -237,7 +237,7 @@
             this.tsbKwadratCz.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbKwadratCz.Name = "tsbKwadratCz";
             this.tsbKwadratCz.Size = new System.Drawing.Size(23, 22);
-            this.tsbKwadratCz.Text = "toolStripButton6";
+            this.tsbKwadratCz.Text = "Full Rectangle";
             this.tsbKwadratCz.Click += new System.EventHandler(this.tsbKwadratCz_Click);
             // 
             // tsbGumka
@@ -247,7 +247,7 @@
             this.tsbGumka.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbGumka.Name = "tsbGumka";
             this.tsbGumka.Size = new System.Drawing.Size(23, 22);
-            this.tsbGumka.Text = "toolStripButton1";
+            this.tsbGumka.Text = "Eraser";
             this.tsbGumka.Click += new System.EventHandler(this.tsbGumka_Click);
             // 
             // toolStripButton1

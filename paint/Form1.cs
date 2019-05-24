@@ -21,19 +21,19 @@ namespace paint
         private ABrushToolType abrushTool { get; set; }
         private ICoordinates icoordinates { get; set; }
         private IActionRegister iationRegister;
-        private IListOfTools ilistoftools;
         private IToolBrush ibrush;
-        private IToolManagment itoolmanagment;
+      
+        private Dictionary<DateTime, string> listOfClickedButton = new Dictionary<DateTime, string>();
+
 
         private bool isDrawning;
         private Graphics myGraphics;
         private IPenTool myPen;
-        private Point coordinatesEnd;
         private Point coordinatesStart;
         private Point startXY = new Point(0, 0);
 
         private Bitmap obrazek2;
-        private Point pStart, pEnd;
+        private Point pStart;
         private List<Action<Graphics>> lista = new List<Action<Graphics>>();
         public int counter = 0;
         public Form1() 
@@ -46,9 +46,7 @@ namespace paint
         {
             this.iationRegister = iationRegister;
             this.icoordinates = new Cooordinates();
-            this.ilistoftools = new ListOfTools();
             this.ibrush = new ToolBrush();
-            this.itoolmanagment = new ToolManagment();
         }
 
 
@@ -63,7 +61,7 @@ namespace paint
            // myBrush = new SolidBrush(colorPanel.BackColor);
             myGraphics =  canvasPicture.CreateGraphics();
            // myPen = new Pen(colorPanel.BackColor,widthBrush);
-           
+                     
         }       
         private void colorPanel_DoubleClick(object sender, EventArgs e)
         {
@@ -143,45 +141,42 @@ namespace paint
 
         private void canvasPicture_MouseUp(object sender, MouseEventArgs e)
         {
-            //strategy patern is good
-            pEnd = new Point(e.X, e.Y);
            var coordinatesEnd = icoordinates.setEndCoordinates(e.X, e.Y);
             var brush = ibrush.setSolidBrush(colorPanel.BackColor);
 
-            if (ilistoftools.chooseActiveTool("Line"))
+            string activeButton = listOfClickedButton.OrderByDescending(x => x.Key).FirstOrDefault().Value;
+
+            if (activeButton ==  "Line")
             {
                 apenTool = new LineWithPen(canvasPicture, (int)nudTRackBar.Value, coordinatesEnd.X,
                coordinatesEnd.Y, coordinatesStart.X, coordinatesStart.Y, icoordinates);
-                apenTool.getMainToolTypePen(new PenTool(), colorPanel.BackColor);
-
-                // iationRegister.SetElementToListOfActions(x => x.DrawLine(pen, pStart, pEnd));
+                apenTool.getMainToolTypePen(new PenTool(), colorPanel.BackColor);    
             }
            
-            if (ilistoftools.chooseActiveTool("Rectangle"))
+            if (activeButton == "Empty Rectangle")
             {
                 apenTool = new EmptyRectangle(canvasPicture, (int)nudTRackBar.Value, coordinatesEnd.X,
                coordinatesEnd.Y, coordinatesStart.X, coordinatesStart.Y, icoordinates);
+                apenTool.getMainToolTypePen(new PenTool(), colorPanel.BackColor);  
+            }
+            if (activeButton == "Empty Ellipse")
+            {   
+                apenTool = new EmptyEllipse(canvasPicture, (int)nudTRackBar.Value, coordinatesEnd.X, coordinatesEnd.Y, coordinatesStart.X,
+                    coordinatesStart.Y, icoordinates);
                 apenTool.getMainToolTypePen(new PenTool(), colorPanel.BackColor);
-                //var pen = setSizeAndColor(myPen, (int)nudTRackBar.Value, colorPanel.BackColor);
-                //myGraphics.DrawRectangle(pen, pStart.X, pStart.Y, (pEnd.X - pStart.X), (pEnd.Y - pStart.Y));
-               // iationRegister.SetElementToListOfActions(x => x.DrawRectangle(new Pen(Color.White), pStart.X, pStart.Y, (pEnd.X - pStart.X), (pEnd.Y - pStart.Y)));
+                
             }
-            if (ilistoftools.chooseActiveTool("Ellipse"))
-            {
-                //myPen = new Pen(colorPanel.BackColor, (int)nudTRackBar.Value);
-                var pen = setSizeAndColor(myPen, (int)nudTRackBar.Value, colorPanel.BackColor);
-                myGraphics.DrawEllipse(pen, pStart.X, pStart.Y, (pEnd.X - pStart.X), (pEnd.Y - pStart.Y));
-               // iationRegister.SetElementToListOfActions(x => x.DrawEllipse(new Pen(Color.White), pStart.X, pStart.Y, (pEnd.X - pStart.X), (pEnd.Y - pStart.Y)));
+            if (activeButton == "Full Ellipse")
+            {   
+                abrushTool = new FullEllipse(canvasPicture, (int)nudTRackBar.Value, coordinatesEnd.X, coordinatesEnd.Y, coordinatesStart.X,
+                    coordinatesStart.Y, icoordinates);
+                abrushTool.getMainToolTypeBrush(new ToolBrush(), colorPanel.BackColor);  
             }
-            if (ilistoftools.chooseActiveTool("FillEllipse"))
-            {              
-                myGraphics.FillEllipse(brush, pStart.X, pStart.Y, (pEnd.X - pStart.X), (pEnd.Y - pStart.Y));
-               // iationRegister.SetElementToListOfActions(x => x.FillEllipse(new SolidBrush(Color.White), pStart.X, pStart.Y, (pEnd.X - pStart.X), (pEnd.Y - pStart.Y)));
-            }
-            if (ilistoftools.chooseActiveTool("FillRectangle"))
-            {              
-                myGraphics.FillRectangle(brush, pStart.X, pStart.Y, (pEnd.X - pStart.X), (pEnd.Y - pStart.Y));
-              //  iationRegister.SetElementToListOfActions(x => x.FillRectangle(new SolidBrush(Color.White), pStart.X, pStart.Y, (pEnd.X - pStart.X), (pEnd.Y - pStart.Y)));
+            if (activeButton == "Full Rectangle")
+            {   
+                abrushTool = new FullRectangle(canvasPicture, (int)nudTRackBar.Value, coordinatesEnd.X, coordinatesEnd.Y, coordinatesStart.X,
+                    coordinatesStart.Y, icoordinates);
+                abrushTool.getMainToolTypeBrush(new ToolBrush(), colorPanel.BackColor); 
             }
          
             obrazek2 = getBmp();
@@ -207,18 +202,23 @@ namespace paint
         {
             if (isDrawning == true)
             {
-                
-                if (ilistoftools.chooseActiveTool("Brush"))
+                var coordinatesEnd = icoordinates.setEndCoordinates(e.X, e.Y);
+                var brush = ibrush.setSolidBrush(colorPanel.BackColor);
+                string activeButton = listOfClickedButton.OrderByDescending(x => x.Key).FirstOrDefault().Value;
+
+                if (activeButton == "Simple Brush")
                 {
-                    var brush = ibrush.setSolidBrush(colorPanel.BackColor);
-                    myGraphics.FillEllipse(brush, e.X, e.Y, (int)nudTRackBar.Value, (int)nudTRackBar.Value);
-                  //  iationRegister.SetElementToListOfActions(x => x.FillEllipse(brush, e.X, e.Y, (int)nudTRackBar.Value, (int)nudTRackBar.Value)); 
+                    abrushTool = new SimpleBrush(canvasPicture, (int)nudTRackBar.Value, coordinatesEnd.X, coordinatesEnd.Y, coordinatesStart.X,
+                    coordinatesStart.Y, icoordinates);
+                    abrushTool.getMainToolTypeBrush(new ToolBrush(), colorPanel.BackColor);
                 }
-                if (ilistoftools.chooseActiveTool("Eraser"))
+                if (activeButton == "Eraser")
                 {
                     //we must change
-                    myGraphics.FillEllipse(ibrush.setSolidBrush(Color.White), e.X, e.Y, (int)nudTRackBar.Value, (int)nudTRackBar.Value);
-                  //  iationRegister.SetElementToListOfActions(x => x.FillEllipse(ibrush.setSolidBrush(Color.White), e.X, e.Y, (int)nudTRackBar.Value, (int)nudTRackBar.Value));
+                    abrushTool = new Eraser(canvasPicture, (int)nudTRackBar.Value, coordinatesEnd.X, coordinatesEnd.Y, coordinatesStart.X,
+                    coordinatesStart.Y, icoordinates);
+                    abrushTool.getMainToolTypeBrush(new ToolBrush(), colorPanel.BackColor);
+                  
                 }
                 
             }
@@ -300,39 +300,36 @@ namespace paint
 
         private void tsbBrush_Click(object sender, EventArgs e)
         {
-
-            ilistoftools.setActiveTool("Brush");
+            listOfClickedButton.Add(DateTime.Now, tsbBrush.Text);
         }
 
         private void tsbLinia_Click(object sender, EventArgs e)
         {
-            ilistoftools.setActiveTool("Line");
-            //test
-           
+            listOfClickedButton.Add(DateTime.Now, tsbLinia.Text);
         }
 
         private void tsbKolo_Click(object sender, EventArgs e)
         {
-            ilistoftools.setActiveTool("Ellipse");
+            listOfClickedButton.Add(DateTime.Now, tsbKolo.Text);
         }
 
         private void tsbKoloCz_Click(object sender, EventArgs e)
         {
-            ilistoftools.setActiveTool("FillEllipse");
+            listOfClickedButton.Add(DateTime.Now, tsbKoloCz.Text);
         }
 
         private void tsbKwadrat_Click(object sender, EventArgs e)
         {
-            ilistoftools.setActiveTool("Rectangle");
+            listOfClickedButton.Add(DateTime.Now, tsbKwadrat.Text);
         }
 
         private void tsbKwadratCz_Click(object sender, EventArgs e)
         {
-            ilistoftools.setActiveTool("FillRectangle");
+             listOfClickedButton.Add(DateTime.Now, tsbKwadratCz.Text);
         }
         private void tsbGumka_Click(object sender, EventArgs e)
         {
-            ilistoftools.setActiveTool("Eraser");
+            listOfClickedButton.Add(DateTime.Now, tsbGumka.Text);
         }
         /// <summary>
         /// print screen new 

@@ -24,6 +24,8 @@ namespace paint.PaintTools
                 (base.pointEnd.X - base.pointStart.X), (base.pointEnd.Y - base.pointStart.Y));
             return true;
         }
+
+
     }
 
     public class LineWithPen : APenToolType
@@ -41,6 +43,8 @@ namespace paint.PaintTools
             base.graphic.DrawLine(ipen.getPenTool(base.size, color), base.pointStart, base.pointEnd);
             return true;
         }
+
+
     }
 
     public class EmptyRectangle : APenToolType
@@ -59,6 +63,8 @@ namespace paint.PaintTools
                 (base.pointEnd.X - base.pointStart.X), (base.pointEnd.Y - base.pointStart.Y));
             return true;
         }
+
+
     }
 
 

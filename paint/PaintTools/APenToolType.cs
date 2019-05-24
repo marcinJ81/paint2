@@ -15,6 +15,7 @@ namespace paint.PaintTools
             : base(canvasControl, size, xEnd, yEnd, xStart, yStart, icoordintes)
         {
         }
+
         public abstract bool getMainToolTypePen(IPenTool ipen, Color color);
     }
 }

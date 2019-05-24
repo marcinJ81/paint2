@@ -19,7 +19,7 @@ namespace paint.PaintTools
 
         public override bool getMainToolTypeBrush(IToolBrush ibrush, Color color)
         {
-            base.graphic.FillEllipse(ibrush.setSolidBrush(color), base.pointStart.X, base.pointStart.Y,
+           base.graphic.FillEllipse(ibrush.setSolidBrush(color), base.pointStart.X, base.pointStart.Y,
                 (base.pointEnd.X - base.pointStart.X), (base.pointEnd.Y - base.pointStart.Y));
             return true;
         }
@@ -41,6 +41,7 @@ namespace paint.PaintTools
                 (base.pointEnd.X - base.pointStart.X), (base.pointEnd.Y - base.pointStart.Y));
             return true;
         }
+
     }
     public class Eraser : ABrushToolType
     {
@@ -57,6 +58,7 @@ namespace paint.PaintTools
             base.graphic.FillEllipse(ibrush.setSolidBrush(Color.White), base.pointStart.X, base.pointStart.Y, base.size, base.size);
             return true;
         }
+
     }
     public class SimpleBrush : ABrushToolType
     {
@@ -73,6 +75,8 @@ namespace paint.PaintTools
             base.graphic.FillEllipse(ibrush.setSolidBrush(color), base.pointStart.X, base.pointStart.Y, base.size, base.size);
             return true;
         }
+
+
     }
 
 }
