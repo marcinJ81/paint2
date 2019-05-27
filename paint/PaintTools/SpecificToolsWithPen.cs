@@ -24,8 +24,6 @@ namespace paint.PaintTools
                 (base.pointEnd.X - base.pointStart.X), (base.pointEnd.Y - base.pointStart.Y));
             return true;
         }
-
-
     }
 
     public class LineWithPen : APenToolType

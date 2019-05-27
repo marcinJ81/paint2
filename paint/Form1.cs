@@ -340,18 +340,18 @@ namespace paint
         /// <param name="e"></param>
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-            ScreenCapture sc = new ScreenCapture();
-            // capture entire screen, and save it to a file
-            Image img = sc.CaptureScreen();
-            // display image in a Picture control named imageDisplay
-            this.canvasPicture.Image = img;
-            // capture this window, and save it
-            sc.CaptureWindowToFile(this.Handle, "d:\\temp2.gif", ImageFormat.Gif);
+           // ScreenCapture sc = new ScreenCapture();
+           // // capture entire screen, and save it to a file
+           // Image img = sc.CaptureScreen();
+           // // display image in a Picture control named imageDisplay
+           // this.canvasPicture.Image = img;
+           // // capture this window, and save it
+           // sc.CaptureWindowToFile(this.Handle, "d:\\temp2.gif", ImageFormat.Gif);
 
-           var  obrazek = (Image)Image.FromFile("d:\\temp2.gif").Clone();
-            obrazek2 = new Bitmap(obrazek, canvasPicture.Width, canvasPicture.Height);
-            canvasPicture.BackgroundImage = obrazek2;
-            myGraphics.DrawImage(obrazek2, startXY);
+           //var  obrazek = (Image)Image.FromFile("d:\\temp2.gif").Clone();
+           // obrazek2 = new Bitmap(obrazek, canvasPicture.Width, canvasPicture.Height);
+           // canvasPicture.BackgroundImage = obrazek2;
+           // myGraphics.DrawImage(obrazek2, startXY);
 
         }
 
